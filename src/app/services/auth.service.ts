@@ -62,7 +62,7 @@ export class AuthService {
     if( !localStorage.getItem('token')) return of(false);
     const token= localStorage.getItem('token');
 
-    return this.http.get<Usuario>(`${URL_API}/usuarios/1`)
+    return this.http.get<Usuario>(`${URL_API}/peliculas`)
     .pipe(
       tap(usuario => this.usuario = usuario),
       map( usuario => !!usuario),

@@ -12,7 +12,7 @@ const checkAuthStatus =(): Observable<boolean> =>{
     tap(isAuthenticated => console.log('Authenticated:', isAuthenticated)),
     tap(isAuthenticated =>{
       if(isAuthenticated){
-        router.navigate(['/heroes/list'])
+        router.navigate(['/peliculas/search'])
       }
 
     }),

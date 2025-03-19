@@ -11,7 +11,7 @@ const checkAuthStatus =(): Observable<boolean> =>{
     tap(isAuthenticated => console.log('Authenticated:', isAuthenticated)),
     tap(isAuthenticated =>{
       if(!isAuthenticated){
-        router.navigate(['/home/login'])
+        router.navigate(['/home'])
       }
     })
   )

@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { canActivateGuardpublic, canMatchGuardpublic } from './guards/public.guard';
+import { canActivateGuard, canMatchGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    canMatch:[canMatchGuardpublic],
-    canActivate:[canActivateGuardpublic]
+    // canMatch:[canMatchGuardpublic],
+    // canActivate:[canActivateGuardpublic]
 
  },
   {
     path:'peliculas',
-    loadChildren:() => import('./peliculas/peliculas.module').then(m=>m.PeliculasModule)
+    loadChildren:() => import('./peliculas/peliculas.module').then(m=>m.PeliculasModule),
+    // canMatch: [canMatchGuard],
+    // canActivate: [canActivateGuard],
+
   },
   {
     path:'usuarios',
