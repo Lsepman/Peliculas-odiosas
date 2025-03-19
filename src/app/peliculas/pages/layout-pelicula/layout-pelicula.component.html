@@ -1,30 +1,39 @@
 <mat-sidenav-container fullscreen style="background-color: rgb(203, 250, 244);">
   <mat-sidenav #sidenav mode="push" [ngStyle]="{width: '250px'}">
-    <mat-toolbar color="primary">
+    <mat-toolbar class="mat-toolbar">
       <span>Menú</span>
       <span class="spacer"></span>
       <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
+        <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar>
+
     <mat-nav-list>
+      <mat-divider></mat-divider>
       <mat-list-item *ngFor="let item of sidebarItems" (click)="sidenav.close()" [routerLink]="item.route">
-        <mat-icon matListItemIcon>{{item.icon}}</mat-icon>{{item.label}}
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span>{{ item.label }}</span>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-toolbar class="custom-toolbar" color="primary">
+
+    <mat-toolbar class="custom-toolbar" color="primary">
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <!-- <span class="spacer"></span>
-    <span>{{ user?.usuario}}</span> -->
-    <button mat-button (click)="onLogout()">
-      Logout
-    </button>
+      <span class="toolbar-title"></span>
+      <span class="spacer"></span>
+      <div class="usuario-container">
+        <span class="usuario">{{ usuario }}</span>
+        <div id="salir" (click)="onLogout()" class="salir">
+          <mat-icon class="icono">exit_to_app</mat-icon>
+          <span>Salir</span>
+        </div>
+      </div>
   </mat-toolbar>
 
+  <!-- Contenido Principal -->
   <div class="container p-2">
     <router-outlet></router-outlet>
   </div>

@@ -1,0 +1,16 @@
+<h2>{{}}</h2>
+
+<form [formGroup]="usuarioForm" (ngSubmit)="()">
+  <label>Usuario:</label>
+  <input type="text" formControlName="usuario" placeholder="Correo electrónico" />
+
+  <label>Nombre Público:</label>
+  <input type="text" formControlName="nombre_publico" placeholder="Nombre visible" />
+
+  <label>Rol:</label>
+  <select formControlName="id_rol">
+    <option *ngFor="let rol of listaRoles" [value]="rol.id_rol">{{ rol.nombre }}</option>
+  </select>
+
+  <button type="submit" [disabled]="!usuarioForm.valid">Guardar Cambios</button>
+</form>

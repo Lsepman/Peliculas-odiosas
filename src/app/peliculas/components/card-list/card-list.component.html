@@ -1,38 +1,35 @@
 <mat-card style="background-color: rgb(212, 169, 252);">
   <mat-card-header>
     <mat-card-title style="color: rgb(146, 36, 173);">{{pelicula.title}}</mat-card-title>
-    <mat-card-subtitle>Popularity: <span style="color: rgb(77, 74, 243);">{{pelicula.popularity}}</span></mat-card-subtitle>
+    <mat-card-subtitle>Popularity: <span style="color: rgb(45, 42, 235);">{{pelicula.popularity}}</span></mat-card-subtitle>
   </mat-card-header>
 
-  <img mat-card-image [src]="pelicula | peliculaImage" alt="{{pelicula.title}}" style="height: 400px;">
+  <img mat-card-image [src]="pelicula.poster_path | detalleImage" alt="{{pelicula.title}}" style="height: 400px;">
 
    <mat-card-content class="mt-2">
-    <h4>Original lenguage <span style="color: rgb(243, 107, 98);">{{pelicula.original_language.toUpperCase()}}</span></h4>
+    <h4>Original lenguage <span style="color: rgb(173, 40, 30);">{{pelicula.original_language.toUpperCase()}}</span></h4>
     <p>
       <strong>Overview: </strong>{{pelicula.overview.slice(0, 150)}}...
     </p>
     <br>
     <mat-chip-listbox >
        <mat-chip *ngFor="let genre of (listaGenres.length > 0 ? listaGenres.slice(0,3) : [{ name: 'Genero desconocido', id: 0 }])" style="background-color: rgb(220, 185, 252);">
-        <span style="color: rgb(194, 66, 91);">{{genre.name}}</span></mat-chip>
+        <span style="color: rgb(113, 5, 185);">{{genre.name}}</span></mat-chip>
     </mat-chip-listbox>
   </mat-card-content>
 
-  <mat-divider class="mt-1" style="background-color: cadetblue; size: auto;"></mat-divider>
+  <mat-divider class="mt-2" style="background-color: cadetblue; size: auto;"></mat-divider>
   <mat-card-actions>
-    <button mat-button mat-raised color="accent" [routerLink]="['/peliculas/', pelicula.id]">
+    <button mat-button mat-raised color="primary"[routerLink]="['/peliculas/', pelicula.id]">
       <mat-icon>more_horiz</mat-icon>
       Show details
     </button>
-    <!-- <span class="spacer"></span>
-    <button mat-button mat-raised color="warn"ngIf="isFavorite" (click)="deleteFavorites()">
-      <mat-icon>delete</mat-icon>
-      Delete Favorite
-    </button>
-    <button mat-button mat-raised *ngIf="!isFavorite" style="color: rgb(196, 0, 196);" (click)="addFavoriteFilm()">
+    <span class="spacer"></span>
+
+    <button mat-button mat-raised *ngIf="!esFavorita" style="color: rgb(196, 0, 196);" (click)="aniadirFavoritas()">
       <mat-icon>favorite</mat-icon>
-      Add to Favorites
-    </button> -->
+      Añadir a Favorita
+    </button>
 
   </mat-card-actions>
 

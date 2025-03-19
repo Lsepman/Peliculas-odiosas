@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Detalles, SpokenLanguage } from '../../interfaces/detalles.interface';
 import { PeliculasService } from '../../services/pelicula.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { delay, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+import { Detalles, Genre } from 'src/app/interfaces/detalles.interface';
+
 
 @Component({
   selector: 'app-mostrar-pelicula',
@@ -12,6 +14,8 @@ import { delay, switchMap } from 'rxjs';
 export class MostrarPeliculaComponent implements OnInit {
 
   public peliculaDetalle?: Detalles;
+  public listaGenres!: Genre[];
+
 
   constructor(private peliculaService: PeliculasService,
     private activatedRoute: ActivatedRoute,
@@ -20,12 +24,14 @@ export class MostrarPeliculaComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
     .pipe(
-      delay(200),
       switchMap(({ id }) => this.peliculaService.getPeliculasById(id)))
       .subscribe
       (peliculaDetalle => {
         if( !peliculaDetalle) return this.router.navigate(['/peliculas/search']);
         this.peliculaDetalle= peliculaDetalle;
+
+        this.listaGenres = this.peliculaService.listadoGenre.filter((genero) =>  this.peliculaDetalle?.genres.map(genre => genre.id).includes(genero.id));
+
         return;
       })
   }

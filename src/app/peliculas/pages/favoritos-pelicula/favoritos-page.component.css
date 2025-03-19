@@ -1,0 +1,8 @@
+.favoritas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 📌 Más ancho */
+  gap: 25px; /* 📌 Espacio entre tarjetas */
+  justify-items: center;
+  align-items: stretch;
+  padding: 20px;
+}

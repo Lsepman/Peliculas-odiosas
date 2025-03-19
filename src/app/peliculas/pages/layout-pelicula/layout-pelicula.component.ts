@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Pelicula } from '../../interfaces/pelicula.interface';
-import { PeliculasService } from '../../services/pelicula.service';
+
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-layout-pelicula',
@@ -11,15 +12,22 @@ import { Router } from '@angular/router';
 export class LayoutPeliculaComponent {
 
   public sidebarItems =[
-    {label: 'Listado', icon: 'label', route:'./list'},
-    {label: 'Añadir', icon: 'add', route:'./new-hero'},
     {label:'Buscar', icon: 'search', route:'./search'},
+    {label: 'Favoritos', icon: 'favorite', route:'./favoritos'},
+    {label: 'Usuarios', icon: 'person', route: './usuarios'}
+
+
   ]
 
-  constructor(private router: Router
-  ){}
+  usuario: string = localStorage.getItem('nombre_publico')!;
+  esAdmin: boolean = false;
+
+  constructor(private authService: AuthService,
+    private router: Router){}
 
   onLogout(): void{
+    this.authService.doLogout().subscribe(response =>{})
+    this.router.navigate(['home']);
   }
 
 

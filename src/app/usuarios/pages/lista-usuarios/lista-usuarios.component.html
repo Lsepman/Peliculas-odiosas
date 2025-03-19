@@ -1,0 +1,10 @@
+<h1>Listado de Usuarios</h1>
+<mat-divider></mat-divider>
+
+<div class="grid mb-8">
+
+  <div *ngFor = "let usuario of usuarios" class="col-12 sm:col-4 md:col-3 xl:col-2">
+    <app-card-usuarios [usuario]="usuario"></app-card-usuarios>
+  </div>
+
+</div>

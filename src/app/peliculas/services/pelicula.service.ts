@@ -1,9 +1,9 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import { Pelicula, SearchResponse } from '../interfaces/pelicula.interface';
-import { Detalles, Genre} from '../interfaces/detalles.interface';
-import { Genres } from '../interfaces/genres.interface';
+import { Pelicula, SearchResponse } from '../../interfaces/pelicula.interface';
+import { Detalles, Genre} from '../../interfaces/detalles.interface';
+import { Genres } from '../../interfaces/genres.interface';
 
 @Injectable({
   providedIn: 'root'

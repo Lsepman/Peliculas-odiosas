@@ -9,6 +9,9 @@ import { MaterialModule } from '../material/material.module';
 import { MostrarPeliculaComponent } from './pages/mostrar-pelicula/mostrar-pelicula.component';
 import { PeliculaImagePipe } from './pipes/pelicula-image.pipe';
 import { DetalleImagePipe } from './pipes/detalle-image.pipe';
+import { FavoritosPageComponent } from './pages/favoritos-pelicula/favoritos-page.component';
+import { CardFavoritasComponent } from './components/card-favoritas/card-favoritas.component';
+
 
 
 @NgModule({
@@ -19,11 +22,14 @@ import { DetalleImagePipe } from './pipes/detalle-image.pipe';
     MostrarPeliculaComponent,
     PeliculaImagePipe,
     DetalleImagePipe,
+    FavoritosPageComponent,
+    CardFavoritasComponent,
   ],
   imports: [
     CommonModule,
     PeliculasRoutingModule,
-    MaterialModule
+    MaterialModule,
+
   ],
   exports:[LayoutPeliculaComponent]
 })

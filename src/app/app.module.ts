@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeliculasModule } from './peliculas/peliculas.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,10 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     PeliculasModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    MatChipsModule,
+    MatIconModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

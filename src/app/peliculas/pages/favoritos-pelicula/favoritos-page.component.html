@@ -1,0 +1,15 @@
+<div class="row p-3">
+  <div class="col-12">
+    <h1 style="color: blueviolet; text-align: center;">💜Peliculas Favoritas💜</h1>
+
+
+    <h2 *ngIf="!favoritas || favoritas.length === 0;">Peliculas Favoritas no encontradas</h2>
+
+
+        <div *ngIf="favoritas && favoritas.length > 0;" class="favoritas-grid">
+
+          <app-card-favoritas *ngFor="let favorita of favoritas" [favorita]="favorita"></app-card-favoritas>
+
+        </div>
+      </div>
+    </div>

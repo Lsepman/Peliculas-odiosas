@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { Pelicula } from "../interfaces/pelicula.interface";
-import { Detalles } from '../interfaces/detalles.interface';
+import { Pelicula } from "../../interfaces/pelicula.interface";
+import { Detalles } from '../../interfaces/detalles.interface';
 
 @Pipe({
   name: 'peliculaImage'
@@ -8,12 +8,8 @@ import { Detalles } from '../interfaces/detalles.interface';
 
 export class PeliculaImagePipe {
 
-  transform(pelicula: Pelicula): unknown{
-    console.log(pelicula)
-    if(!pelicula.backdrop_path){
-      return 'assets/no-image.jpg'
-    }
-    return `https://image.tmdb.org/t/p/w1280/${pelicula.backdrop_path}`
+  transform(backdropPath: string | undefined): string{
+      return backdropPath ? `https://image.tmdb.org/t/p/w500/${backdropPath}` : 'assets/no-image.jpg';
 
   }
 

@@ -1,1 +1,31 @@
+.sidenav-container {
+  height: 100vh;
+}
 
+.sidenav {
+  width: 250px;
+  background: #333;
+  color: white;
+}
+
+mat-toolbar {
+  background: #6200ea;
+  color: white;
+}
+
+mat-list-item {
+  color: white;
+}
+
+.usuario-container {
+  display: flex; /* ✅ Alinea Leticia y Salir en una línea */
+  align-items: center; /* ✅ Centra verticalmente los elementos */
+  gap: 20px; /* ✅ Espacio entre Leticia y Salir */
+}
+
+.salir {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* ✅ Espacio entre el icono y "Salir" */
+  cursor: pointer;
+}

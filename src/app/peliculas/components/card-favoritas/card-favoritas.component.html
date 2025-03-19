@@ -1,0 +1,34 @@
+<mat-card class="favorita-card">
+  <mat-card-header>
+    <mat-card-title class="favorita-h3">{{pelicula?.title}}</mat-card-title>
+  </mat-card-header>
+
+  <img mat-card-image
+     [src]="pelicula?.backdrop_path | peliculaImage"
+     alt="{{ pelicula?.title }}"
+     class="favorita-img">
+
+       <mat-card-content class="favorita-content">
+        <div class="favorita-link-container">
+          <strong>Link Película:</strong>
+          <span *ngIf="pelicula?.homepage; else noDisponible">
+          <a [href]="pelicula?.homepage" target="_blank">{{ pelicula?.homepage }}</a>
+        </span>
+        <ng-template #noDisponible>
+          <span><br>No disponible</span>
+        </ng-template>
+        </div>
+
+      <div class="boton-container">
+        <button mat-button class="detalle-button" (click)="verDetalles()">
+          <mat-icon>info</mat-icon> Detalles
+        </button>
+
+        <button mat-button class="eliminar-button" (click)="eliminarFavoritas()">
+          <mat-icon>delete</mat-icon> Eliminar Favorita
+        </button>
+      </div>
+
+       </mat-card-content>
+
+</mat-card>
