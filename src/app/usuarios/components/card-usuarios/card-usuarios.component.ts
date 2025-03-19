@@ -13,6 +13,7 @@ import { CLOSE } from 'src/app/shared/messages';
 export class CardUsuariosComponent implements OnInit {
 
   @Input() public usuario! : Usuario;
+  @Input() public index!: Number;
 
 
   public listaUsuarios: Usuario[] = []
@@ -22,6 +23,12 @@ export class CardUsuariosComponent implements OnInit {
   ngOnInit(): void{
     if(!this.usuario) throw new Error('Usuario Property is required')
   }
+  OnDeleteUsuario(){
+    this.eliminarUsuario().then(()=>{
+      this.usuarioService.usuarios = this.usuarioService.usuarios.filter((element) => element.id_usuario !== this.usuario.id_usuario);
+    })
+    }
+
 
  async eliminarUsuario(){
   if (!confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
@@ -34,8 +41,5 @@ export class CardUsuariosComponent implements OnInit {
     this.snackBar.open('No se pudo eliminar usuario', CLOSE, {duration: 5000})
   }
 }
-
-
-
 
 }

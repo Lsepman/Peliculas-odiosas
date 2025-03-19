@@ -24,6 +24,7 @@ export class LoginComponent{
   titulo = 'Inicia Sesion';
   showSpinner= false;
   campoPassword = false
+  isloading= false;
 
 
   constructor(
@@ -38,7 +39,7 @@ export class LoginComponent{
 
 verificarEmail() {
    if(this.loginForm.get('email')?.invalid){
-    this.loginForm.get('email')?.markAllAsTouched();
+    this.loginForm.get('email')?.markAsTouched();
     return;
    }
 
@@ -48,8 +49,10 @@ verificarEmail() {
       this.loading= false;
       this.showSpinner= false;
       this.campoPassword= true;
+      this.isloading= false;
     },2000);
   }
+
    login(){
     if (this.loginForm.invalid){
     this.loginForm.markAllAsTouched();
@@ -59,35 +62,35 @@ verificarEmail() {
   }
 
 async acceder() {
-if(this.loginForm.valid){
-const data = this.loginForm.value;
-console.log("Intentando iniciar sesion con:", data)
-const RESPONSE = await this.authService.doLogin(data).toPromise();
+  if(this.loginForm.valid){
+    const data = this.loginForm.value;
+    console.log("Intentando iniciar sesion con:", data)
+    const RESPONSE = await this.authService.doLogin(data).toPromise();
 
-console.log(RESPONSE)
-if(RESPONSE.ok){
-  if(RESPONSE.data && 'token' in RESPONSE.data){
+    console.log(RESPONSE)
+    if(RESPONSE.ok){
+      if(RESPONSE.data && 'token' in RESPONSE.data){
 
-    this.cookieService.set('token', RESPONSE.data.token);
-    localStorage.setItem('token', RESPONSE.data.token);
-    localStorage.setItem('usuario', RESPONSE.data.usuario);
-    localStorage.setItem('nombre_publico', RESPONSE.data.nombre_publico);
-    localStorage.setItem('id_rol', RESPONSE.data.id_rol);
-    this.commonService.headers= new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${RESPONSE.data.token}`
-    });
-    this.router.navigate(['/peliculas/search']);
+        this.cookieService.set('token', RESPONSE.data.token);
+        localStorage.setItem('token', RESPONSE.data.token);
+        localStorage.setItem('usuario', RESPONSE.data.usuario);
+        localStorage.setItem('nombre_publico', RESPONSE.data.nombre_publico);
+        localStorage.setItem('id_rol', RESPONSE.data.id_rol);
+        this.commonService.headers= new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${RESPONSE.data.token}`
+        });
+        this.router.navigate(['/peliculas/search']);
 
-  }else if(RESPONSE.data.valido === 0){
-    console.warn("No se recibió token en la respuesta.");
-    this.snackBar.open('Usuario inhabilitado', 'Cerrar', {duration: 5000});
-  }else if(RESPONSE.data.valido === 1){
-    this.snackBar.open('Usuario o contraseñas incorrectas', 'Cerrar', {duration:5000});
-    this.loginForm.reset();
+      }else if(RESPONSE.data.valido === 0){
+        console.warn("No se recibió token en la respuesta.");
+        this.snackBar.open('Usuario inhabilitado', 'Cerrar', {duration: 5000});
+      }else if(RESPONSE.data.valido === 1){
+        this.campoPassword= false;
+        this.snackBar.open('Usuario o contraseñas incorrectas', 'Cerrar', {duration:5000});
+      }
+    }
   }
-}
-}
 }
 }
 

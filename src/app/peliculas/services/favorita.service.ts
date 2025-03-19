@@ -30,7 +30,7 @@ export class FavoritaService {
     return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}`, body, {headers: this.commonService.headers})
   }
 
-  deletePelicula(token: string, id: number): Observable<ApiResponse>{
+  deletePelicula(token: string, id: number){
     const body = { id_pelicula: id, token_sesion: token }; // <-- 'token_sesion' CORRECTO
     return this.http.request<ApiResponse>('DELETE', `${URL_API}/${ENDPOINT}`, {
       body,

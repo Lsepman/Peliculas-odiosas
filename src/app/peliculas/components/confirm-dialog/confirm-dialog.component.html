@@ -1,0 +1,10 @@
+<h1>¿Está seguro?</h1>
+<div mat-dialog-content>
+  <p>Este proceso no es reversible. Si continua eliminara esta pelicula de favoritas</p>
+</div>
+<div mat-dialog-actions>
+<button mat-button (click)="onNoClick()" color="warn">Cancelar</button>
+<span class="spacer"></span>
+<button mat-button (click)="onConfirm()" color="primary">OK</button>
+</div>
+

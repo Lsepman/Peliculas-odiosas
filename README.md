@@ -34,3 +34,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 5. Lanzar servidor json ```npm run backend```
 6. Actualizar la version anterior de json-server ```npm i --save-dev json-server@0.17.1```
 7. Comando para realizar subida a git ```npm run build:git ```
+8. Comando para forzar el uso del proveedor de cifrado heredadao de OpenSSL en Node.js ```$env:NODE_OPTIONS="--openssl-legacy-provider```
+9. Comando para instalar build y subida git ```npm install -g build npm install -g copyfiles```
+10. ```npm run subida:git```
+
+

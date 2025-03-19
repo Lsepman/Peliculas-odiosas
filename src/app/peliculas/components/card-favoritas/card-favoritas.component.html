@@ -1,6 +1,7 @@
 <mat-card class="favorita-card">
   <mat-card-header>
-    <mat-card-title class="favorita-h3">{{pelicula?.title}}</mat-card-title>
+    <mat-card-title>{{pelicula?.title}}</mat-card-title>
+    <mat-card-subtitle>Fecha lanzamiento: {{pelicula?.release_date}}</mat-card-subtitle>
   </mat-card-header>
 
   <img mat-card-image
@@ -18,6 +19,7 @@
           <span><br>No disponible</span>
         </ng-template>
         </div>
+
 
       <div class="boton-container">
         <button mat-button class="detalle-button" (click)="verDetalles()">

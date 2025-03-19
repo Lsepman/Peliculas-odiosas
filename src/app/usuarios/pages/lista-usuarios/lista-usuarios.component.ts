@@ -6,15 +6,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-lista-usuarios',
   templateUrl: './lista-usuarios.component.html',
-  styleUrls: ['./lista-usuarios.component.css']
+  styleUrls: []
 })
 export class ListaUsuariosComponent implements OnInit {
 
   constructor(
     private servicioUsuarios: UsuarioService,
     private router: Router){}
-
-    usuarios: Usuario[]= [];
 
   ngOnInit(): void {
    this.getUsuarios();
@@ -27,8 +25,12 @@ export class ListaUsuariosComponent implements OnInit {
     }
   }
 
-  get usuario(){
+  get usuarios(){
    return this.servicioUsuarios.usuarios;
+  }
+
+  onClick(){
+    this.router.navigate(['/usuarios/add-usuario'])
   }
 
 

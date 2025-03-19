@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Error404PageComponent } from './shared/pages/error404-page/error404-page/error404-page.component';
+import { canActivateGuardpublic, canMatchGuardpublic } from './guards/public.guard';
+
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    canMatch:[canMatchGuardpublic],
+    canActivate:[canActivateGuardpublic]
+
  },
   {
     path:'peliculas',

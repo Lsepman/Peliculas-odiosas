@@ -4,6 +4,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { ApiResponse} from '../interfaces/api-response';
 import { URL_API } from 'src/environment/environments';
 import { CommonService } from '../shared/common.service';
+import { Observable, of } from 'rxjs';
+import { Usuario } from '../interfaces/usuario';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,7 @@ import { CommonService } from '../shared/common.service';
 export class AuthService {
   constructor(private http: HttpClient, private cookieService: CookieService, private commonService: CommonService) {}
 
+  private usuario? : Usuario;
   doLogin(data: any) {
 
     const body = JSON.stringify(data);
@@ -52,6 +56,18 @@ export class AuthService {
 
     return this.http.put<ApiResponse>(`${URL_API}/reset_pass.php`, body);
 
+  }
+
+  checkAuthentication(): Observable<boolean>{
+    if( !localStorage.getItem('token')) return of(false);
+    const token= localStorage.getItem('token');
+
+    return this.http.get<Usuario>(`${URL_API}/usuarios/1`)
+    .pipe(
+      tap(usuario => this.usuario = usuario),
+      map( usuario => !!usuario),
+      catchError (err => of(false))
+    )
   }
 
 }

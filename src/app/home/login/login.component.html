@@ -13,22 +13,22 @@
           <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="username" required>
-          <mat-icon matSuffix>email</mat-icon>
+          <mat-icon matIconSuffix>email</mat-icon>
           <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
             Introduce un email válido
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" *ngIf="!loading" (click)="verificarEmail()" class="full-width">
+        <button mat-raised-button color="primary" *ngIf="!isloading" (click)="verificarEmail()" class="full-width">
           Siguiente
         </button>
 
-        <div class="spinner-wrapper" *ngIf="loading">
+        <div class="spinner-wrapper" *ngIf="isloading">
           <mat-spinner diameter="80"></mat-spinner>
         </div>
       </div>
         <!-- Paso 2: Campo de Contraseña -->
         <div *ngIf="campoPassword">
-          <mat-form-field class="full-width">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>Contraseña</mat-label>
             <input matInput type="password" formControlName="password" required>
             <mat-icon matSuffix>lock</mat-icon>

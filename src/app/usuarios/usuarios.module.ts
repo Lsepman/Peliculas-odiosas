@@ -7,6 +7,7 @@ import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios
 import { CardUsuariosComponent } from './components/card-usuarios/card-usuarios.component';
 import { MatCardModule } from '@angular/material/card';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { MaterialModule } from '../material/material.module';
     CommonModule,
     UsuariosRoutingModule,
     MatCardModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
 
   ]
 })

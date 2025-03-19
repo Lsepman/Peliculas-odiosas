@@ -1,30 +1,32 @@
-<mat-card style="background-color: rgb(212, 169, 252);">
-  <mat-card-header>
-    <mat-card-title style="color: rgb(146, 36, 173);">{{usuario.usuario}}</mat-card-title>
-    <mat-card-subtitle>Usuario: <span style="color: rgb(45, 42, 235);">{{usuario.nombre_publico}}</span></mat-card-subtitle>
-  </mat-card-header>
+  <div class="contenedor-usuarios">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>
+        Usuario: <span>{{usuario.usuario}}</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        Nombre Público: <span>{{usuario.nombre_publico}}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
 
-   <mat-card-content class="mt-2">
-    <h4>Rol: <span style="color: rgb(173, 40, 30);">{{usuario.rol}}</span></h4>
-    <p>Id Usuario: {{usuario.id_usuario}}
-      <strong>Observaciones: </strong>{{usuario.observaciones}}
-    </p>
-    <br>
+    <mat-card-content class="content">
+      <div>
+      <strong>Rol:
+        <span>{{usuario.rol}}</span></strong>
+      <p>Id Usuario: {{usuario.id_usuario}}</p>
+      <p *ngIf="usuario.observaciones">
+        <strong>Observaciones:</strong> {{usuario.observaciones}}
+      </p>
+    </div>
+
+    <div class="boton-container">
+      <button mat-button class="detalle-button" mat-raised [routerLink]="['/usuarios/editar', usuario.id_usuario]">
+        <mat-icon>edit</mat-icon> Editar
+      </button>
+      <button mat-button mat-raised class="eliminar-button" (click)="eliminarUsuario()">
+        <mat-icon>delete</mat-icon> Eliminar
+      </button>
+    </div>
   </mat-card-content>
-
-  <mat-divider class="mt-2" style="background-color: cadetblue; size: auto;"></mat-divider>
-  <mat-card-actions>
-        <span class="spacer"></span>
-
-    <button mat-button mat-raised [routerLink]="['/usuarios/editar', usuario.id_usuario]" style="color: rgb(196, 0, 196);">
-      <mat-icon>edit</mat-icon>
-      Editar
-    </button>
-    <button mat-button mat-raised style="color:tomato" (click)="eliminarUsuario()">
-      <mat-icon>delete</mat-icon>
-      Eliminar
-    </button>
-
-  </mat-card-actions>
-
-</mat-card>
+  </mat-card>
+</div>

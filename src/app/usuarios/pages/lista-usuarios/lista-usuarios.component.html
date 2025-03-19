@@ -1,10 +1,12 @@
-<h1>Listado de Usuarios</h1>
-<mat-divider></mat-divider>
+<div class="row p-3">
+  <div class="col-12">
+      <h1 style="text-align: center;">Listado de Usuarios</h1>
+        <button mat-fab extended (click)="onClick()"><mat-icon>add_circle</mat-icon>Crear un usuario</button>
 
-<div class="grid mb-8">
-
-  <div *ngFor = "let usuario of usuarios" class="col-12 sm:col-4 md:col-3 xl:col-2">
-    <app-card-usuarios [usuario]="usuario"></app-card-usuarios>
-  </div>
-
+        <div class="grid mb-8 mt-4">
+          <div *ngFor = "let usuario of usuarios" class="col-12 sm:col-4 md:col-3 xl:col-2">
+            <app-card-usuarios [usuario]="usuario"></app-card-usuarios>
+          </div>
+        </div>
+    </div>
 </div>

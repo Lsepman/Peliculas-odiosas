@@ -12,12 +12,13 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-editar-usuarios',
   templateUrl: './editar-usuarios.component.html',
-  styleUrls: ['./editar-usuarios.component.css']
+  styleUrls: []
 })
 export class EditarUsuariosComponent implements OnInit{
 
   public usuario? : Usuario;
   listaRoles!: Rol[];
+  public editar: boolean = false;
 
   usuarioForm : FormGroup = new FormGroup({
     id_usuario: new FormControl(null),
@@ -40,19 +41,35 @@ export class EditarUsuariosComponent implements OnInit{
 
 
   async ngOnInit(){
+    try{
     const id= this.activatedRoute.snapshot.paramMap.get('id');
     if(id){
-      await this.servicioUsuario.getUsuarioById(id);
-    }
-    await this.getRoles();
+      await this.getRoles();
+      this.getUsuarios();
+      this.usuario = this.servicioUsuario.usuarios.find(i => i.id_usuario == id);
+          if(this.usuario){
+            this.usuarioForm.reset(this.usuario);
+            this.editar= true;
+          }
+        }else{
+          await this.getRoles();
+        }
+      }catch (error){
+        console.log('error al obtener el usuario', error);
+      }
 
-  }
+    }
+
 
   async getRoles(){
     const RESPONSE = await this.servicioRoles.getAllRoles().toPromise();
     if(RESPONSE.ok){
       this.listaRoles = RESPONSE.data as Rol[];
     }
+  }
+  get currentUsuario(): Usuario{
+    const usuario= this.usuarioForm.value as Usuario;
+    return usuario;
   }
 
   async getUsuarios(){
@@ -62,7 +79,7 @@ export class EditarUsuariosComponent implements OnInit{
    }
   }
 
-  async confirmEddit(){
+  async confirmEdit(){
     if(this.usuarioForm.valid){
       const usuario= this.usuarioForm.value;
       const RESP = await this.servicioUsuario.editUsuario(usuario).toPromise()
@@ -76,6 +93,7 @@ export class EditarUsuariosComponent implements OnInit{
       this.snackBar.open(INVALID_FORM, CLOSE, {duration:5000})
     }
   }
+
 
   async addUsuario(){
     if(this.usuarioForm.valid){

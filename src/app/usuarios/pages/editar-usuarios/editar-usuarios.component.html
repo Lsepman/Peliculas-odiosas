@@ -1,16 +1,61 @@
-<h2>{{}}</h2>
+<h2>{{currentUsuario.id_usuario ? 'Editar' : 'Añadir'}} Usuario</h2>
 
-<form [formGroup]="usuarioForm" (ngSubmit)="()">
-  <label>Usuario:</label>
-  <input type="text" formControlName="usuario" placeholder="Correo electrónico" />
+<!-- Si tiene un id muestra su nombre -->
+<small *ngIf="usuario?.id_usuario">{{usuario?.nombre_publico}}</small>
+<mat-divider class="mb-2"></mat-divider>
+<div class="grid">
+  <div class="col-12">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Añadir Usuario</mat-card-title>
+          <form id="usuarioForm" [formGroup]="usuarioForm" (ngSubmit)="confirmEdit()">
+            <mat-form-field class="col-12">
+              <mat-label>Usuario (email)</mat-label>
+              <input
+              type="email"
+              matInput
+              required
+              formControlName="usuario"/>
+              </mat-form-field>
 
-  <label>Nombre Público:</label>
-  <input type="text" formControlName="nombre_publico" placeholder="Nombre visible" />
+              <mat-form-field class="col-12">
+                <mat-label>Contraseña</mat-label>
+                <input type="password"
+                matInput
+                required
+                formControlName="password">
+                </mat-form-field>
+              <mat-form-field class="col-12">
+                <mat-label>Nombre publico</mat-label>
+                <input type="text"
+                matInput
+                required
+                formControlName="nombre_publico">
+                </mat-form-field>
 
-  <label>Rol:</label>
-  <select formControlName="id_rol">
-    <option *ngFor="let rol of listaRoles" [value]="rol.id_rol">{{ rol.nombre }}</option>
-  </select>
+              <mat-form-field class="col-12 ">
+                <mat-label>Rol</mat-label>
+                <mat-select required formControlName="id_rol" matInput>
+                  <mat-option *ngFor="let rol of listaRoles" value="{{rol.id_rol}}">{{rol.rol}}</mat-option>
+                </mat-select>
+                </mat-form-field>
 
-  <button type="submit" [disabled]="!usuarioForm.valid">Guardar Cambios</button>
-</form>
+                <mat-form-field class="col-12">
+                  <mat-label>Observaciones</mat-label>
+                  <input type="text"
+                  matInput
+                  required
+                  formControlName="observaciones">
+                  </mat-form-field>
+            </form>
+
+            <div mat-dialog-actions>
+              <button *ngIf="usuario" mat-flat-button (click)="deleteUser()" color="warn">Borrar</button>
+              <button *ngIf="editar && usuarioForm.valid" mat-flat-button color="primary" type="submit" form="usuarioForm">Guardar</button>
+              <button *ngIf="!editar && usuarioForm.valid" mat-flat-button color="primary" (click)="addUsuario()"
+            form="usuarioFom">Agregar</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+  </div>
+</div>

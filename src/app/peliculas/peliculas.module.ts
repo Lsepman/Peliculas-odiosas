@@ -11,6 +11,8 @@ import { PeliculaImagePipe } from './pipes/pelicula-image.pipe';
 import { DetalleImagePipe } from './pipes/detalle-image.pipe';
 import { FavoritosPageComponent } from './pages/favoritos-pelicula/favoritos-page.component';
 import { CardFavoritasComponent } from './components/card-favoritas/card-favoritas.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -24,11 +26,13 @@ import { CardFavoritasComponent } from './components/card-favoritas/card-favorit
     DetalleImagePipe,
     FavoritosPageComponent,
     CardFavoritasComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
     PeliculasRoutingModule,
     MaterialModule,
+    ReactiveFormsModule
 
   ],
   exports:[LayoutPeliculaComponent]
