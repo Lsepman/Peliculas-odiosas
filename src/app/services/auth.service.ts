@@ -15,6 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient, private cookieService: CookieService, private commonService: CommonService) {}
 
   private usuario? : Usuario;
+  
   doLogin(data: any) {
 
     const body = JSON.stringify(data);

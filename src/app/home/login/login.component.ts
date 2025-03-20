@@ -17,7 +17,7 @@ export class LoginComponent{
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    password: new FormControl('', Validators.required)
    });
   loading = false;
   emailVerificado = false;
@@ -39,7 +39,7 @@ export class LoginComponent{
 
 verificarEmail() {
    if(this.loginForm.get('email')?.invalid){
-    this.loginForm.get('email')?.markAsTouched();
+    this.loginForm.get('email')?.markAllAsTouched();
     return;
    }
 
@@ -58,7 +58,7 @@ verificarEmail() {
     this.loginForm.markAllAsTouched();
     return;
     }
-      this.acceder();
+    this.acceder();
   }
 
 async acceder() {
